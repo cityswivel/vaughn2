@@ -20,8 +20,8 @@ function sortPosts(posts) {
 function filterPosts(posts,filterStatus) {
 	if (filterStatus == true) {
 				return posts.filter(function(el){
-					return el.price >= 0
-					&& el.price <= 100000
+					return el.price >= 300000
+					&& el.price <= 400000
 				});
 	}
 	if (filterStatus == false) {
@@ -97,7 +97,7 @@ class App extends Component {
         }
 				<ScrollUpButton
 					EasingType='easeOutCubic'
-					AnimationDuration={500}
+					AnimationDuration={2500}
 				 />
       </div>
     )

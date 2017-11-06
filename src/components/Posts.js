@@ -4,6 +4,7 @@ import MLSImage from './MLSImage';
 import { connect } from 'react-redux';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LazyLoad from 'react-lazyload';
+var numeral = require('numeral');
 var _ = require('lodash');
 
 class Posts extends Component {
@@ -42,14 +43,11 @@ console.log(isEmpty);
 	}
 	if (!this.props.images.isFetching) {
 		 var listy = posts.map(function(post,i){
+
 			var image_link = _.find(images,{'mls':post.mls});
 				return (
 			<LazyLoad height={200}>
 				<li className="listing_li" key={i}>
-				<span style={{fontWeight:'bold'}}>{post.mls}</span><br/>
-				<span style={{fontSize:'12px'}}>${post.price}</span>
-				<div style={{fontSize:'12px'}}>{post.area}</div>
-				<div style={{fontSize:'14px'}}>Listing # {i}</div>
 				{ isEmpty
 					? (
 						<div>
@@ -60,11 +58,16 @@ console.log(isEmpty);
 						</div>
 				) : (
 					<div style={{borderRadius:'5px',width:'100%',paddingTop:'80%',background:'url('+image_link.link+')',backgroundSize:'cover',backgroundPosition:'center',position:'relative'}}>
-					<div style={style.price}>${post.price}</div>
+					<div style={style.price}>${numeral(post.price).format(0,0)}</div>
 					</div>
 
 				)
 				}
+				<span style={{fontWeight:'bold'}}>{post.mls}</span><br/>
+				<span style={{fontSize:'12px'}}>${numeral(post.price).format(0,0)}</span>
+				<div style={{fontSize:'12px'}}>{post.area}</div>
+				<div style={{fontSize:'14px'}}>Listing # {i}</div>
+				<div style={{fontSize:'10px',maxHeight:'100px',overflow:'hidden'}}>{post.description}</div>
 				</li>
 				</LazyLoad>
 			)
