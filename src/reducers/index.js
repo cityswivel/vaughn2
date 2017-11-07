@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS, TOGGLE_FILTER
+  REQUEST_POSTS, RECEIVE_POSTS, TOGGLE_FILTER, SELECT_ORDER
 } from '../actions'
 
 const selectedReddit = (state = 'listings_residential', action) => {
@@ -65,10 +65,22 @@ const filterStatus = (state = false, action) => {
 				return state
 		}
 }
+const sortStatus = (state = {order: 'asc'}, action) => {
+		switch(action.type) {
+			case SELECT_ORDER:
+				return {
+					...state,
+					order: action.order
+				}
+				default:
+					return state
+		}
+}
 const rootReducer = combineReducers({
   postsByReddit,
   selectedReddit,
-	filterStatus
+	filterStatus,
+	sortStatus
 })
 
 export default rootReducer

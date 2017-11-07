@@ -3,6 +3,12 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 export const TOGGLE_FILTER = 'TOGGLE_FILTER'
+export const SELECT_ORDER = 'SELECT_ORDER'
+
+export const selectOrder = order => ({
+	type: SELECT_ORDER,
+	order
+})
 
 export const selectReddit = reddit => ({
   type: SELECT_REDDIT,

@@ -10,7 +10,7 @@ var _ = require('lodash');
 class Posts extends Component {
 render () {
 const {posts, images, isFetching} = this.props;
-const isEmpty = images.length === 0
+const isEmpty = posts.length === 0
 const style = {
   container: {
     position: 'relative',
@@ -57,7 +57,7 @@ console.log(isEmpty);
 						<div style={style.container}><span style={style.refresh_test}>images loading...</span></div>
 						</div>
 				) : (
-					<div style={{borderRadius:'5px',width:'100%',paddingTop:'80%',background:'url('+image_link.link+')',backgroundSize:'cover',backgroundPosition:'center',position:'relative'}}>
+					<div style={{borderRadius:'5px',width:'100%',paddingTop:'80%',background:'url('+post.link+')',backgroundSize:'cover',backgroundPosition:'center',position:'relative'}}>
 					<div style={style.price}>${numeral(post.price).format(0,0)}</div>
 					</div>
 
