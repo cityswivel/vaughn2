@@ -7,7 +7,10 @@ import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import reducer from './reducers'
 import App from './containers/App'
-import ListingView from './containers/Listing'
+import ResidentialListing from './containers/ResidentialListing'
+import CommercialListing from './containers/CommercialListing'
+import LandListing from './containers/LandListing'
+import MultiListing from './containers/MultiListing'
 import TopNav from './containers/TopNav';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -35,8 +38,10 @@ ReactDOM.render(
 				<div>
 				<TopNav />
 				<Route exact path="/" component={App}/>
-				<Route path="/listings_residential/:number" component={ListingView}/>
-				<Route path="/listings_commercial/:number" component={ListingView}/>
+				<Route path="/listings_residential/:number" component={ResidentialListing}/>
+				<Route path="/listings_commercial/:number" component={CommercialListing}/>
+				<Route path="/listings_land/:number" component={LandListing}/>
+				<Route path="/listings_multi_family/:number" component={MultiListing}/>
 				</div>
 			</MuiThemeProvider>
 	</ConnectedRouter>
