@@ -1,15 +1,16 @@
 import React,  { Component }  from 'react'
 import PropTypes from 'prop-types'
-import MLSImage from './MLSImage';
 import { connect } from 'react-redux';
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import LazyLoad from 'react-lazyload';
+import MyModal from './MyModal';
+import { Link } from 'react-router-dom';
 var numeral = require('numeral');
 var _ = require('lodash');
 
 class Posts extends Component {
 render () {
-const {posts, images, isFetching} = this.props;
+const {posts, images, isFetching, mylink} = this.props;
 const isEmpty = posts.length === 0
 const style = {
   container: {
@@ -36,18 +37,26 @@ const style = {
 		borderRadius:'4px',
 	}
 };
-console.log(this.props);
-console.log(isEmpty);
-	if (this.props.images.isFetching == true) {
+	if (this.props.images.isFetching === true) {
 		return (<p>still loading images</p>);
 	}
 	if (!this.props.images.isFetching) {
 		 var listy = posts.map(function(post,i){
-
-			var image_link = _.find(images,{'mls':post.mls});
+			var i_style = {
+				back_image : {
+					backgroundImage:'url('+post.link+')',
+					backgroundSize: 'cover',
+					backgroundPositionX: 'center',
+					backgroundPositionY: 'center',
+					backgroundRepeat: 'no-repeat',
+					position: 'relative',
+					borderRadius:'5px',
+					paddingTop:'80%',
+				}
+			}
 				return (
-			<LazyLoad height={200}>
-				<li className="listing_li" key={i}>
+			<LazyLoad height={200} key={i}>
+				<li className="listing_li">
 				{ isEmpty
 					? (
 						<div>
@@ -57,17 +66,28 @@ console.log(isEmpty);
 						<div style={style.container}><span style={style.refresh_test}>images loading...</span></div>
 						</div>
 				) : (
-					<div style={{borderRadius:'5px',width:'100%',paddingTop:'80%',background:'url('+post.link+')',backgroundSize:'cover',backgroundPosition:'center',position:'relative'}}>
+					<Link to={`/${mylink}/${post.mls}`} post={post}>
+					<div style={i_style.back_image}>
 					<div style={style.price}>${numeral(post.price).format(0,0)}</div>
 					</div>
+					</Link>
 
 				)
 				}
 				<span style={{fontWeight:'bold'}}>{post.mls}</span><br/>
 				<span style={{fontSize:'12px'}}>${numeral(post.price).format(0,0)}</span>
 				<div style={{fontSize:'12px'}}>{post.area}</div>
-				<div style={{fontSize:'14px'}}>Listing # {i}</div>
-				<div style={{fontSize:'10px',maxHeight:'100px',overflow:'hidden'}}>{post.description}</div>
+				<div style={{fontSize:'12px'}}>Bedrooms: {post.bedrooms}</div>
+				<div style={{fontSize:'12px'}}>Bathrooms: {post.fullbaths}</div>
+				<div>{mylink}</div>
+				<div ><Link to={`/${mylink}/${post.mls}`}>View Listing</Link></div>
+				<MyModal
+					price={post.price}
+					description={post.description}
+					image={post.link}
+					mls={post.mls}
+					bedrooms={post.bedrooms}
+				/>
 				</li>
 				</LazyLoad>
 			)

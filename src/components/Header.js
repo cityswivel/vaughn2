@@ -8,7 +8,7 @@ componentDidMount() {
 
 render () {
 	return (
-		<div style={{width:'100%',textAlign:'center'}}>VAUGHN DEARING</div>
+		<div >VAUGHN DEARING</div>
 	)
 }
 }

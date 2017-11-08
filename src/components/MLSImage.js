@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-const BASE_URL = 'http://jasonseck.com:1337/';
-const KEY = 'jasonseck';
 
 class MLSImage extends Component {
 	state = {
@@ -18,7 +16,7 @@ componentWillReceiveProps(nextProps) {
 }
 render () {
 	return (
-		<img src={this.props.image} />
+		<img src={this.props.image} alt="mls images"/>
 	)
 }
 }

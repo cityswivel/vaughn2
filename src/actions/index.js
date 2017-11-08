@@ -4,10 +4,19 @@ export const SELECT_REDDIT = 'SELECT_REDDIT'
 export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT'
 export const TOGGLE_FILTER = 'TOGGLE_FILTER'
 export const SELECT_ORDER = 'SELECT_ORDER'
-
+export const UPDATE_FILTER = 'UPDATE_FILTER'
+export const CLEAR_FILTER = 'CLEAR_FILTER'
+var _ = require('lodash');
 export const selectOrder = order => ({
 	type: SELECT_ORDER,
 	order
+})
+export const clearFilter = () => ({
+	type: CLEAR_FILTER
+})
+export const updateFilter = filter => ({
+	type: UPDATE_FILTER,
+	filter
 })
 
 export const selectReddit = reddit => ({
@@ -29,6 +38,7 @@ export const receivePosts = (reddit, json) => ({
   type: RECEIVE_POSTS,
   reddit,
   posts: json.map(child => child),
+	my_areas: _.uniq(json.map(function(listing,i){ return listing.area})),
   receivedAt: Date.now()
 })
 export function toggleFilter() {

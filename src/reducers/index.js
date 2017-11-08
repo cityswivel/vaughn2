@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS, TOGGLE_FILTER, SELECT_ORDER
+  REQUEST_POSTS, RECEIVE_POSTS, TOGGLE_FILTER, SELECT_ORDER, UPDATE_FILTER, CLEAR_FILTER
 } from '../actions'
 
 const selectedReddit = (state = 'listings_residential', action) => {
@@ -36,7 +36,9 @@ const posts = (state = {
         isFetching: false,
         didInvalidate: false,
         items: action.posts,
+				my_areas: action.my_areas,
         lastUpdated: action.receivedAt
+
       }
     default:
       return state
@@ -57,10 +59,40 @@ const postsByReddit = (state = { }, action) => {
   }
 }
 
-const filterStatus = (state = false, action) => {
+const filterStatus = (state = {
+	filter: false,
+	criteria : {
+		min_price: '',
+		max_price: '',
+		beds: '',
+		baths: '',
+		mls: '',
+	}
+	}, action) => {
 		switch(action.type) {
 			case TOGGLE_FILTER:
-				return !state
+				return {
+					...state,
+					filter: !state.filter
+				}
+				case UPDATE_FILTER:
+					return {
+						...state,
+						filter:true,
+						criteria : action.filter
+					}
+				case CLEAR_FILTER:
+					return {
+						...state,
+						filter:false,
+						criteria: {
+							min_price: '',
+							max_price: '',
+							beds: '',
+							baths: '',
+							mls: '',
+						}
+					}
 			default:
 				return state
 		}
