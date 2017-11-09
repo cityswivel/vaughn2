@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import {routerReducer} from 'react-router-redux'
 import {
   SELECT_REDDIT, INVALIDATE_REDDIT,
   REQUEST_POSTS, RECEIVE_POSTS, TOGGLE_FILTER, SELECT_ORDER, UPDATE_FILTER, CLEAR_FILTER
@@ -112,7 +113,8 @@ const rootReducer = combineReducers({
   postsByReddit,
   selectedReddit,
 	filterStatus,
-	sortStatus
+	sortStatus,
+	routerReducer
 })
 
 export default rootReducer

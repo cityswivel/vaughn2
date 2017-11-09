@@ -15,7 +15,7 @@ import TopNav from './containers/TopNav';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Route } from 'react-router'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
+import { ConnectedRouter, routerMiddleware, push } from 'react-router-redux'
 import createHistory from 'history/createBrowserHistory'
 
 const history = createHistory()
