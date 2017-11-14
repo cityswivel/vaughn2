@@ -12,6 +12,7 @@ componentDidMount() {
 
 		return(
 			<div style={styles.backsplash}>
+				<img src="/images/logo_cropped.png"/>
 			</div>
 		)
 	}
@@ -21,10 +22,16 @@ componentDidMount() {
 
 const styles = {
 	backsplash : {
-		height:'80vh',
+		height:'100vh',
 		backgroundImage: 'url(temp.jpg)',
 		backgroundSize: 'cover',
-		backgroundPosition: 'center'
+		backgroundPosition: 'center',
+		display:'flex',
+		alignItems:'center',
+		justifyContent:' center',
+	},
+	logo : {
+
 	}
 }
 export default TopSplash;

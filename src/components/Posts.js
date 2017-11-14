@@ -50,13 +50,15 @@ const style = {
 					backgroundPositionY: 'center',
 					backgroundRepeat: 'no-repeat',
 					position: 'relative',
-					borderRadius:'5px',
+					borderTopLeftRadius:'5px',
+          borderTopRightRadius:'5px',
 					paddingTop:'80%',
 				}
 			}
 				return (
-			<LazyLoad height={200} key={i}>
+			<LazyLoad height={100} key={i}>
 				<li className="listing_li">
+        <div className="cardWrap">
 				{ isEmpty
 					? (
 						<div>
@@ -68,26 +70,30 @@ const style = {
 				) : (
 					<Link to={`/${mylink}/${post.mls}`} post={post}>
 					<div style={i_style.back_image}>
-					<div style={style.price}>${numeral(post.price).format(0,0)}</div>
+					<div style={style.price}>{post.city} - ${numeral(post.price).format(0,0)}</div>
 					</div>
 					</Link>
 
 				)
 				}
-				<span style={{fontWeight:'bold'}}>{post.mls}</span><br/>
-				<span style={{fontSize:'12px'}}>${numeral(post.price).format(0,0)}</span>
-				<div style={{fontSize:'12px'}}>{post.area}</div>
-				<div style={{fontSize:'12px'}}>Bedrooms: {post.bedrooms}</div>
-				<div style={{fontSize:'12px'}}>Bathrooms: {post.fullbaths}</div>
-				<div>{mylink}</div>
-				<div ><Link to={`/${mylink}/${post.mls}`}>View Listing</Link></div>
-				<MyModal
-					price={post.price}
-					description={post.description}
-					image={post.link}
-					mls={post.mls}
-					bedrooms={post.bedrooms}
-				/>
+          <div className="cardInterior">
+            <div className="cardInfo">
+      				{post.bedrooms ? (<div style={{fontSize:'20px',fontWeight:'400'}}>Bedrooms: {post.bedrooms}</div>) : (<div></div>)}
+      				{post.fullbaths ? (<div style={{fontSize:'20px'}}>Bathrooms: {post.fullbaths}</div>) : (<div></div>)}
+      				<span style={{fontWeight:'bold'}}>MLS # {post.mls}</span><br/>
+            </div>
+            <div className="cardActions">
+      				<div ><Link to={`/${mylink}/${post.mls}`}>View Listing</Link></div>
+      				<MyModal
+      					price={post.price}
+      					description={post.description}
+      					image={post.link}
+      					mls={post.mls}
+      					bedrooms={post.bedrooms}
+      				/>
+            </div>
+          </div>
+        </div>
 				</li>
 				</LazyLoad>
 			)

@@ -7,11 +7,10 @@ const Picker = ({ value, onChange, options }) => (
     <h1>{value}</h1>
     <select onChange={e => onChange(e.target.value)}
             value={value}>
-      {options.map(option =>
-        <option value={option} key={option}>
-          {option}
-        </option>)
-      }
+            <option value="listings_residential" key="listings_residential">Residential Listings</option>
+            <option value="listings_land" key="listings_land">Land Listings</option>
+            <option value="listings_commercial" key="listings_commercial">Commercial Listings</option>
+            <option value="listings_multi_family" key="listings_multi_family">Multi Family Listings</option>
     </select>
   </span>
 )

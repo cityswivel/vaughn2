@@ -9,7 +9,6 @@ import FilterForm from '../components/Form'
 import RefreshIndicator from 'material-ui/RefreshIndicator';
 import ScrollUpButton from "react-scroll-up-button";
 import OrderPicker from '../components/OrderPicker';
-import TopSplash from './TopSplash';
 var _ = require('lodash');
 
 const styles = {
@@ -17,6 +16,14 @@ const styles = {
 		width:'100%',
 		maxWidth:'1200px',
 		margin:'auto'
+	},
+	loader : {
+		position:'relative',
+		height:'200px',
+		textAlign:'center',
+
+	},
+	indicator : {
 	}
 }
 function sortPosts(listings) {
@@ -120,7 +127,6 @@ class App extends Component {
     const isEmpty = posts.length === 0
     return (
       <div>
-								<TopSplash />
 									<div style={styles.container_style}>
 						        <Picker value={selectedReddit}
 					                onChange={this.handleChange}
@@ -144,7 +150,7 @@ class App extends Component {
 									          }
 									        </p>
 													{isEmpty
-									          ? (isFetching ? <RefreshIndicator size={40} left={10} top={0} status="loading"  /> : <h2>No Listings Found.</h2>)
+									          ? (isFetching ? <div style={styles.loader}><RefreshIndicator style={styles.indicator} size={40} left={10} top={0} status="loading"  /></div> : <h2>No Listings Found.</h2>)
 									          : <div style={{ opacity: isFetching ? 0.5 : 1 }}>
 									              <Posts posts={posts} images={images} mylink={selectedReddit} />
 									            </div>
