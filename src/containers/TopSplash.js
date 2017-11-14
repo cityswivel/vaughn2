@@ -12,7 +12,7 @@ componentDidMount() {
 
 		return(
 			<div style={styles.backsplash}>
-				<img src="/images/logo_cropped.png"/>
+				<img style={styles.logo}src="/images/logo_cropped.png"/>
 			</div>
 		)
 	}
@@ -31,7 +31,7 @@ const styles = {
 		justifyContent:' center',
 	},
 	logo : {
-
+		madWidth:'80%',
 	}
 }
 export default TopSplash;

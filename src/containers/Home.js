@@ -28,7 +28,8 @@ export default class Home extends Component {
 const styles = {
   container : {
     maxWidth:'1200px',
-    margin:'25px',
+    margin:'auto',
+	padding: '25px',
   },
   about : {
 
