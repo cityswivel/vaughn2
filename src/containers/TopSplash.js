@@ -5,7 +5,6 @@ var _ = require('lodash');
 var my_image = require ('../assets/temp.jpg')
 class TopSplash extends Component {
 componentDidMount() {
-	console.log(this.props);
 }
 
 	render() {

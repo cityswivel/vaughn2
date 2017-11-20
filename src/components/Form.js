@@ -1,14 +1,18 @@
 import React,  { Component }  from 'react'
 import { clearFilter } from '../actions'
 import { connect } from 'react-redux'
+import CitySelect from './CitySelect';
 var serialize = require('form-serialize');
 
 
 class FilterForm extends Component {
+componentDidMount() {
+}
 handleChange = (filter) => {this.props.onChange(filter);}
 clearForm = (form) => {this.props.dispatch(clearFilter());form.reset()}
 	render() {
  var form = document.querySelector('#example-form');
+const {areas} = this.props;
 		return (
 			<div style={{marginTop:'20px',marginBottom:'20px'}}>
 			<form id="example-form">
@@ -22,6 +26,7 @@ clearForm = (form) => {this.props.dispatch(clearFilter());form.reset()}
 							BathRooms	<input type="text" name="baths" onChange={() => console.log('form change')}/><br/>
 						</div>
 						 : null}
+						 <CitySelect areas={areas} />
 						 			</form>
 			<button onClick={() => this.handleChange(serialize(form, {hash:true}),'apply')}>apply</button>
 			<button onClick={() => this.clearForm(form)}>clear</button>

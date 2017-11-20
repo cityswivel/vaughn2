@@ -71,7 +71,6 @@ getListing(mls) {
 		if (this.state.imagesLoading || this.state.dataLoading) {
 			return(<p>loading...</p>)
 		}
-		console.log(this.state.data);
 		const {
 			description,
 			price,
@@ -103,7 +102,6 @@ getListing(mls) {
 	};
 
 
-		console.log(image_list);
 		return(
 			<div style={styles.container}>
 				<div style={{width:'35%',float:'right',padding:'8px',boxSizing:'border-box'}}>

@@ -26,6 +26,12 @@ const styles = {
 	indicator : {
 	}
 }
+function sortAreas(areas) {
+	console.log(areas);
+	 var sortedAreas = _.orderBy(areas);
+
+	return sortedAreas;
+}
 function sortPosts(listings) {
 var sorted ='';
 	switch(listings.order) {
@@ -94,7 +100,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedReddit } = this.props
+
+	  const { dispatch, selectedReddit } = this.props
     dispatch(fetchPostsIfNeeded(selectedReddit))
 		dispatch(fetchPostsIfNeeded('all_images'))
   }
@@ -123,15 +130,19 @@ class App extends Component {
 	}
 
   render() {
-    const { selectedReddit, posts, isFetching, lastUpdated, imagesisFetching, imageslastUpdated, images } = this.props
+    const { selectedReddit, posts, isFetching, lastUpdated, imagesisFetching, imageslastUpdated, images, areas } = this.props
     const isEmpty = posts.length === 0
+if (isEmpty) {
+	return(<p>preload</p>);
+}
+
     return (
       <div>
 									<div style={styles.container_style}>
 						        <Picker value={selectedReddit}
 					                onChange={this.handleChange}
 					                options={[ 'listings_residential', 'listings_commercial','listings_land', 'listings_multi_family' ]} />
-													<FilterForm onChange={this.handleFilterUpdate.bind(this)}/>
+													<FilterForm areas={areas} onChange={this.handleFilterUpdate.bind(this)}/>
 													<div>{posts.length ? posts.length + ' listings returned' : null}</div>
 													<OrderPicker onChange={this.handleOrder.bind(this)}/>
 													{lastUpdated &&
@@ -172,7 +183,8 @@ const mapStateToProps = state => {
   const {
     isFetching,
     lastUpdated,
-    items: posts
+    items: posts,
+		my_areas: areas,
   } = postsByReddit[selectedReddit] || {
     isFetching: true,
     items: []
@@ -193,6 +205,7 @@ const mapStateToProps = state => {
 		imagesisFetching,
 		imageslastUpdated,
 		images,
+		areas : sortAreas(areas),
   }
 }
 

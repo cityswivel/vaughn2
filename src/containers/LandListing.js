@@ -70,7 +70,6 @@ getListing(mls) {
 		if (this.state.imagesLoading || this.state.dataLoading) {
 			return(<p>loading...</p>)
 		}
-		console.log(this.state.data);
 		const {
 			description,
 			price,

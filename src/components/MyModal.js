@@ -16,7 +16,6 @@ export default class MyModal extends React.Component {
     this.setState({ open: false });
   };
 	load_image = (mls) => {
-		console.log(mls);
 	}
   render() {
 

@@ -5,7 +5,6 @@ var _ = require('lodash');
 
 class TopNav extends Component {
 componentDidMount() {
-	console.log(this.props);
 }
 
 	render() {
@@ -15,9 +14,9 @@ componentDidMount() {
 				<div style={styles.nav_left}><img src="/images/logo_cropped.png" width="75"/></div>
 				<div style={styles.nav_right}>
 					<div style={styles.nav_item}><a style={styles.nav_link} href="/">Home</a></div>
-					<div style={styles.nav_item}><a style={styles.nav_link} href="listings">Search Listings</a></div>
-					<div style={styles.nav_item}><a style={styles.nav_link} href="listings">About</a></div>
-					<div style={styles.nav_item}><a style={styles.nav_link} href="listings">Twitter</a></div>
+					<div style={styles.nav_item}><a style={styles.nav_link} href="/listings">Search Listings</a></div>
+					<div style={styles.nav_item}><a style={styles.nav_link} href="/listings">About</a></div>
+					<div style={styles.nav_item}><a style={styles.nav_link} href="/listings">Twitter</a></div>
 				</div>
 			</div>
 		)
