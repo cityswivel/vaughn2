@@ -38,7 +38,7 @@ export const receivePosts = (reddit, json) => ({
   type: RECEIVE_POSTS,
   reddit,
   posts: json.map(child => child),
-	my_areas: _.uniq(json.map(function(listing,i){ return listing.city})),
+	my_areas: _.uniq(json.map(function(listing,i){ return listing.area})),
   receivedAt: Date.now()
 })
 export function toggleFilter() {
